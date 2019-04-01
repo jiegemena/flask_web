@@ -9,3 +9,7 @@ SESSION_KEY_PREFIX = 'dome'
 # sqlite 文件
 SQL_CONN = 'db/web.db'
 SQL_INIT = 'db/init.sql'
+
+
+#log 文件
+LOGPATH = 'logs/'

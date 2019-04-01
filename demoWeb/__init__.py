@@ -37,9 +37,14 @@ def create_app(debug=True):
 
 
 def flask_logging(app):
+
+    is_exists = os.path.exists(app.config['LOGPATH'])
+    if is_exists is False:
+        os.makedirs(app.config['LOGPATH'])
+
     logger = logging.getLogger(__name__)
     logger.setLevel(level=logging.INFO)
-    handler = logging.FileHandler("logs/log.txt")
+    handler = logging.FileHandler(app.config['LOGPATH'] + "log.txt")
     handler.setLevel(logging.INFO)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)

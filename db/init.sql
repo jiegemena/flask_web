@@ -10,3 +10,6 @@ CREATE TABLE User (
 );
 
 INSERT INTO User (username,password,truename,state,address) VALUES ('jiege', '71ddea9bfda25dffd4bbc1c323aa6715', 'huang', 1,'jiangmen');
+
+
+

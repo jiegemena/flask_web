@@ -1,10 +1,10 @@
 from flask import Flask, request
 import logging
 import os
-from demoWeb.blueprints.admincontroller import admin_bp
-from demoWeb.blueprints import web_bp
+from webController.blueprints.admincontroller import admin_bp
+from webController.blueprints import web_bp
 from datetime import timedelta
-from dbcontent import db_sqlite3
+from webCore.dbcontent import db_sqlite3
 
 basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 

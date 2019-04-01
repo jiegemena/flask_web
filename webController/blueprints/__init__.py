@@ -7,9 +7,9 @@
     date : 2019/3/31 15:46
     ide : PyCharm
 """
-from flask import Blueprint, request, current_app
-from demoWeb.services.UserService import UserService
-from commons.SessionTools import Session
+from flask import Blueprint, current_app
+from webController.services.UserService import UserService
+from webCore.commons.SessionTools import Session
 
 web_bp = Blueprint('web', __name__, template_folder="templates", static_url_path='', static_folder='static')
 

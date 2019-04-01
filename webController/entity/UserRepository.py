@@ -7,7 +7,7 @@
     date : 2019/3/31 14:42
     ide : PyCharm
 """
-from dbcontent import db_sqlite3
+from webCore.dbcontent import db_sqlite3
 
 
 class UserRepository:

@@ -1,4 +1,4 @@
-from demoWeb import create_app
+from webCore import create_app
 
 
 if __name__ == '__main__':

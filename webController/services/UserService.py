@@ -6,7 +6,7 @@
     :license: none
     :20190331
 """
-from demoWeb.entity.UserRepository import UserRepository
+from webController.entity.UserRepository import UserRepository
 
 
 class UserService:

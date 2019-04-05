@@ -1,10 +1,10 @@
 from flask import Flask, request
 import logging
 import os
-from demoWeb.blueprints.admincontroller import admin_bp
-from demoWeb.blueprints import web_bp
+from webController.blueprints.admincontroller import admin_bp
+from webController.blueprints import web_bp
 from datetime import timedelta
-from dbcontent import db_sqlite3
+from webCore.dbcontent import db_sqlite3
 
 basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -37,9 +37,14 @@ def create_app(debug=True):
 
 
 def flask_logging(app):
+
+    is_exists = os.path.exists(app.config['LOGPATH'])
+    if is_exists is False:
+        os.makedirs(app.config['LOGPATH'])
+
     logger = logging.getLogger(__name__)
     logger.setLevel(level=logging.INFO)
-    handler = logging.FileHandler("logs/log.txt")
+    handler = logging.FileHandler(app.config['LOGPATH'] + "log.txt")
     handler.setLevel(logging.INFO)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)

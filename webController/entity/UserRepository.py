@@ -7,8 +7,7 @@
     date : 2019/3/31 14:42
     ide : PyCharm
 """
-from demoWeb.entity.BaseDB import BaseDB
-from jgpycshare.DateTime import DateTime
+from webController.entity.BaseDB import BaseDB
 
 
 class UserRepository(BaseDB):

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint, request, current_app, render_template, redirect
 
-from commons import Session
-from demoWeb.services.UserService import UserService
-from demoWeb.tools.requirLogin import requirLogin
+from webCore.commons.SessionTools import Session
+from webController.services.UserService import UserService
+from webController.tools.requirLogin import requirLogin
 
-admin_bp = Blueprint('admin', __name__, template_folder="templates", static_url_path='', static_folder='static')
+admin_bp = Blueprint('admin', __name__, template_folder="templates", static_url_path='s', static_folder='static')
 
 
 @admin_bp.after_request
@@ -39,19 +39,20 @@ def index():
 
 @admin_bp.route('/login')
 def login():
-
     return render_template('login.html')
 
 
-@admin_bp.route('/loginIn')
+@admin_bp.route('/loginIn', methods=['GET', 'POST'])
 def loginIn():
-    user = request.args['username']
-    passw = request.args['password']
+    user = request.form['username']
+    passw = request.form['password']
+    passw = UserService.getLoginPass(passw)
+    print(passw)
     userService = UserService(SQL_CONN=current_app.config['SQL_CONN'])
     userS = userService.checkLoginUser(user, passw)
     if userS is None:
-        return redirect('/admin/login')
+        return 'False'
 
     Session.set_session('LoginUser', userS)
     Session.set_session('Login', 'login')
-    return redirect('/admin')
+    return 'True'

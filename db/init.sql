@@ -9,6 +9,6 @@ CREATE TABLE User (
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO User (username,password,truename,state,address) VALUES ('admin', '64fc25a5c1a8692d6593e422e9ee80e9', 'huang', 1,'jiangmen');
+INSERT INTO User (username,password,truename,state,address) VALUES ('admin', 'c7a2179db92593c9b4c91a1073c5f5f7', 'huang', 1,'jiangmen');
 
 

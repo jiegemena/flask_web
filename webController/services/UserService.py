@@ -7,6 +7,7 @@
     :20190331
 """
 from webController.entity.UserRepository import UserRepository
+from jgpycshare.StringTools import StringTools
 
 
 class UserService:
@@ -21,6 +22,10 @@ class UserService:
 
     def checkLoginUser(self, user, pass_w):
         return self.UserRepository.Query(username=user, password=pass_w).fetchone()
+
+    @staticmethod
+    def getLoginPass(passW):
+        return StringTools.get_login_pass(passW)
 
 
 if __name__ == '__main__':

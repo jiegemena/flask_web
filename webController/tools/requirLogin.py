@@ -7,7 +7,7 @@
     date : 2019/4/6 0:01
     ide : PyCharm
 """
-from commons import Session
+from webCore.commons.SessionTools import Session
 from flask import redirect
 
 

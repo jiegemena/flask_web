@@ -1,19 +1,40 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock %}
 {% block head %}
-    {{ super() }}
-    <style type="text/css">
+{{ super() }}
+<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.js"></script>
+<style type="text/css">
         .important { color: #336699; }
-    </style>
+
+
+
+</style>
 {% endblock %}
 {% block content %}
-    <h1>Index</h1>
-    <p class="important">
-      Welcome on my awesome homepage.
-    </p>
-<form action="/admin/loginIn" method="get">
-    <input type="text" name="username" value="jiege" />
-    <input type="text" name="password" value="jiege1" />
-    <input type="submit" name="submit" value="submit" />
+<h1>Index</h1>
+
+<form action="/admin/loginIn" method="post" id="loginform">
+    <input type="text" id='username' name="username" value="admin"/>
+    <input type="text" id="password" name="password" value="admin123"/>
+    <input type="button" id="submit" value="submit" onclick="formSubmit()">
 </form>
+<script>
+  function formSubmit()
+  {
+      password = md5($('#password').val());
+      username = $('#username').val()
+      postd = 'username=' + username + '&password=' + password;
+      $.post("http://127.0.0.1:8080/admin/loginIn",postd ,function(data){
+           console.log(data);
+           if(data == 'True'){
+                 location.href = '/admin';
+           }else{
+            alert('fail');
+           }
+      });
+  }
+
+
+</script>
+
 {% endblock %}

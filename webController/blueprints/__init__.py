@@ -21,9 +21,9 @@ def index():
         username = ''
     # blog_bp.config['log'].info('enter admin')
 
-    dbuser = UserService(current_app=current_app)
-    u = dbuser.findall()
-    print(u)
+    # dbuser = UserService(current_app=current_app)
+    #     # u = dbuser.findall()
+    # print(u)
     return 'hello index:' + username
 
 

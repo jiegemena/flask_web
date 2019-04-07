@@ -7,8 +7,8 @@
     date : 2019/4/5 21:53
     ide : PyCharm
 """
-from commons.Exception import OutException
-from dbcontent import db_sqlite3
+from webCore.commons.Exception import OutException
+from webCore.dbcontent import db_sqlite3
 
 
 class BaseDB:

@@ -7,7 +7,7 @@
     date : 2019/4/4 21:21
     ide : PyCharm
 """
-from demoWeb.entity import UserRepository
+from webController.entity import UserRepository
 
 
 class Login:

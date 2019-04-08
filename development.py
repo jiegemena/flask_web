@@ -10,7 +10,7 @@ REQUEST_INTERCEPT = "'| and| exec| union| create| insert| select| delete| update
 SESSION_KEY_PREFIX = 'dome'
 
 #log 文件
-LOGPATH = 'logs/'
+LOGPATH = 'logs'
 
 # sqlite 文件
 SQL_CONN = 'db/web.db'

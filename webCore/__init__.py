@@ -4,6 +4,8 @@ import os
 from webController.blueprints.admincontroller import admin_bp
 from webController.blueprints import web_bp
 from datetime import timedelta
+
+from webCore.commons.LogTools import LogTools
 from webCore.dbcontent import db_sqlite3
 
 basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
@@ -42,19 +44,8 @@ def flask_logging(app):
     if is_exists is False:
         os.makedirs(app.config['LOGPATH'])
 
-    logger = logging.getLogger(__name__)
-    logger.setLevel(level=logging.INFO)
-    handler = logging.FileHandler(app.config['LOGPATH'] + "log.txt")
-    handler.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    handler.setFormatter(formatter)
-
-    console = logging.StreamHandler()
-    console.setLevel(logging.INFO)
-
-    logger.addHandler(handler)
-    logger.addHandler(console)
-    app.config['log'] = logger
+    log = LogTools.get_logger('app', 'info')
+    app.config['log'] = log
     # logger.info("Start print log")
     # logger.debug("Do something")
     # logger.warning("Something maybe fail.")

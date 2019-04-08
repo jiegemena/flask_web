@@ -7,13 +7,22 @@
     date : 2019/4/4 21:21
     ide : PyCharm
 """
-from webController.entity import UserRepository
+from webCore.commons.SessionTools import Session
+from webController.services.UserService import UserService
 
 
 class Login:
-    def __init__(self):
-        pass
+    def __init__(self, SQL_CONN):
+        self.SQL_CONN = SQL_CONN
 
-    def loginIn(self,user,pass_w):
-        UserRepository
-
+    def In(self, user, pass_w):
+        if len(user) <= 1 or len(pass_w) <= 1:
+            return False
+        pass_w = UserService.getLoginPass(pass_w)
+        userService = UserService(SQL_CONN=self.SQL_CONN)
+        userS = userService.checkLoginUser(user, pass_w)
+        if userS is None:
+            return 'False'
+        Session.set_session('LoginUser', userS)
+        Session.set_session('Login', 'login')
+        return 'True'

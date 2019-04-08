@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from flask import Blueprint, request, current_app, render_template, redirect
+from flask import Blueprint, request, current_app, render_template
 
-from webCore.commons.SessionTools import Session
-from webController.services.UserService import UserService
+from webController.blueprints.admincontroller.Login import Login
 from webController.tools.requirLogin import requirLogin
+from webCore.commons.Exception import OutException
 
 admin_bp = Blueprint('admin', __name__, template_folder="templates", static_url_path='', static_folder='static')
 
@@ -29,30 +29,33 @@ def print_request_info():
     # print("POST参数：" + str(request.form))
 
 
-@admin_bp.route('/')
+@admin_bp.route('/home/<action>', methods=['GET', 'POST'])
 @requirLogin
-def index():
-    current_app.config['log'].info('enter admin')
-
-    return render_template('index.html')
-
-
-@admin_bp.route('/login')
-def login():
-    return render_template('login.html')
+def home(action):
+    if action == 'index':
+        current_app.config['log'].info('enter admin')
+        return render_template('home/index.html')
+    else:
+        raise OutException('no action')
 
 
-@admin_bp.route('/loginIn', methods=['GET', 'POST'])
-def loginIn():
-    user = request.form['username']
-    passw = request.form['password']
-    passw = UserService.getLoginPass(passw)
-    print(passw)
-    userService = UserService(SQL_CONN=current_app.config['SQL_CONN'])
-    userS = userService.checkLoginUser(user, passw)
-    if userS is None:
-        return 'False'
+@admin_bp.route('/login/<action>', methods=['GET', 'POST'])
+def login(action):
+    if action == 'index':
+        return render_template('login/login.html')
+    elif action == 'in':
+        user = request.form['username']
+        passw = request.form['password']
+        login = Login(current_app.config['SQL_CONN'])
+        return login.In(user, passw)
+    else:
+        raise OutException('no action')
 
-    Session.set_session('LoginUser', userS)
-    Session.set_session('Login', 'login')
-    return 'True'
+
+@admin_bp.route('/user/<action>', methods=['GET', 'POST'])
+def user(action):
+    if action == 'index':
+        return render_template('user/index.html')
+    else:
+        raise OutException('no action')
+

@@ -12,10 +12,10 @@ from flask import redirect
 
 
 def requirLogin(func):
-    def do():
+    def do(*args, **kwargs):
         Login = Session.get_session('Login')
         if Login == 'login':
-            return func()
+            return func(*args, **kwargs)
         else:
-            return redirect('/admin/login')
+            return redirect('/admin/login/index')
     return do

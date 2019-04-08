@@ -1,11 +1,10 @@
 from flask import Flask, request
-import logging
 import os
 from webController.blueprints.admincontroller import admin_bp
 from webController.blueprints import web_bp
 from datetime import timedelta
+from jgpycshare.LogTools import LogTools
 
-from webCore.commons.LogTools import LogTools
 from webCore.dbcontent import db_sqlite3
 
 basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))

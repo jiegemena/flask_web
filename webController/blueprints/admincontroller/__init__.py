@@ -5,7 +5,7 @@ from webCore.commons.SessionTools import Session
 from webController.services.UserService import UserService
 from webController.tools.requirLogin import requirLogin
 
-admin_bp = Blueprint('admin', __name__, template_folder="templates", static_url_path='s', static_folder='static')
+admin_bp = Blueprint('admin', __name__, template_folder="templates", static_url_path='', static_folder='static')
 
 
 @admin_bp.after_request

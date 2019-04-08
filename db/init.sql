@@ -12,3 +12,5 @@ CREATE TABLE User (
 INSERT INTO User (username,password,truename,state,address) VALUES ('admin', 'c7a2179db92593c9b4c91a1073c5f5f7', 'huang', 1,'jiangmen');
 
 
+
+

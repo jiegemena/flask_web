@@ -11,6 +11,5 @@ flask web 框架的学习
 - vcs : git
 - wsgi : gunicorn
 - public : docker
-- 创建项目 demoWeb
 
 #### 目录

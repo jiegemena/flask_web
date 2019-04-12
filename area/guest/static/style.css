@@ -1,0 +1,19 @@
+.rbtndown {
+    padding-left: 19px;
+    color: #563d7c;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #563d7c;
+}
+
+.require-alert{
+    color:red;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.margin-righe-10 {
+    margin-right: 10px;
+}

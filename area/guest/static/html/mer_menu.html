@@ -1,0 +1,37 @@
+<nav class="bs-docs-sidebar">
+    <ul class="nav bs-docs-sidenav" id="right-menu">
+        <li>
+            <a href="/admin/merchant/index">商户列表</a>
+        </li>
+        <li>
+            <a href="/admin/merchant/check">商户审核</a>
+        </li>
+        <li>
+            <a href="/admin/merchant/add">商户入驻</a>
+        </li>
+        <li>
+            <a href="/admin/merchant/log">商户日志</a>
+        </li>
+    </ul>
+</nav>
+<script>
+        $(function () {
+            activeMenu2();
+        });
+    
+    
+        function activeMenu2() {
+            urlpath = window.location.pathname;
+            //console.log(urlpath);
+            urlpaths = urlpath.split('/')
+            $("#right-menu").find('a').each(function () {
+    
+                thisPath = $(this).attr('href');
+                //console.log('--'+thisPath);
+                thisPaths = thisPath.split('/');
+                if (thisPaths[3] == urlpaths[3]) {
+                    $(this).addClass('rbtndown');
+                }
+            });
+        }  
+    </script>

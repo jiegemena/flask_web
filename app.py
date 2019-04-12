@@ -1,4 +1,4 @@
-from webCore import create_app
+from webCore.flaskapp import create_app
 
 app = create_app(debug=True)
 

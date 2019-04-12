@@ -1,0 +1,34 @@
+<nav class="bs-docs-sidebar">
+        <ul class="nav bs-docs-sidenav" id="right-menu">
+            <li>
+                <a href="/admin/user/index">渠道商列表</a>
+            </li>
+            <li>
+                    <a href="/admin/user/add">新建渠道商</a>
+                </li>
+            <li>
+                <a href="/admin/user/log">渠道商日志</a>
+            </li>
+        </ul>
+    </nav>
+    <script>
+            $(function () {
+                activeMenu2();
+            });
+        
+        
+            function activeMenu2() {
+                urlpath = window.location.pathname;
+                //console.log(urlpath);
+                urlpaths = urlpath.split('/')
+                $("#right-menu").find('a').each(function () {
+        
+                    thisPath = $(this).attr('href');
+                    //console.log('--'+thisPath);
+                    thisPaths = thisPath.split('/');
+                    if (thisPaths[3] == urlpaths[3]) {
+                        $(this).addClass('rbtndown');
+                    }
+                });
+            }  
+        </script>

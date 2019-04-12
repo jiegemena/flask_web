@@ -13,5 +13,5 @@ SESSION_KEY_PREFIX = 'dome'
 LOGPATH = 'logs'
 
 # sqlite 文件
-SQL_CONN = 'db/web.db'
-SQL_INIT = 'db/init.sql'
+SQL_CONN = 'appdata/web.db'
+SQL_INIT = 'appdata/init.sql'

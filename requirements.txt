@@ -1,2 +1,2 @@
 flask
-jgpycshare==1.6
+jgpycshare==1.8.1

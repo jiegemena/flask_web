@@ -18,6 +18,8 @@ from jgpycshare.LogTools import LogTools
 import webCore.db_sqlite3
 import webCore.Tools
 import area
+import webCore.Interface.ILogTools
+import json
 
 basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -116,17 +118,25 @@ def flask_request_handlers(app, sql_intercept):
 
     @app.before_request
     def print_request_info():
+        logstr = ''
+        logstr = logstr + "api_bp.before_request-请求地址：print_request_info:" + str(request.path) + '\n'
+        log = webCore.Interface.ILogTools.ILogTools(app.config['log'])
+        # log.info("api_bp.before_request-请求地址：print_request_info:" + str(request.path))
+        # print("api_bp.before_request-请求地址：print_request_info:" + str(request.path))
         for key in request.args:
-            print("key：{}   value：{}".format(key, request.args[key]))
+            print("app.before_request-key：{}   value：{}".format(key, request.args[key]))
             for k in sql_intercept:
                 if (request.args[key]).find(k) >= 0:
                     return 'have get sql_intercept par:' + k
 
+        logstr = logstr + 'postdata:\n'
         for key in request.form:
-            print("key：{}   value：{}".format(key, request.form[key]))
+            logstr = logstr + "&{}={}".format(key, request.form[key])
             for k in sql_intercept:
                 if (request.form[key]).find(k) >= 0:
                     return 'have post sql_intercept par:' + k
+        
+        log.info(logstr)
 
 
 

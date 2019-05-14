@@ -15,7 +15,7 @@ from flask import Flask, request
 import os
 from datetime import timedelta
 from jgpycshare.LogTools import LogTools
-import webCore.db_sqlite3
+# import webCore.db_sqlite3
 import webCore.Tools
 import area
 import webCore.Interface.ILogTools
@@ -59,15 +59,16 @@ def flask_logging(app):
 
 # 初始化应用
 def flask_init(app):
-    if os.path.exists(app.config['SQL_INIT'] + '.lock') is False:
-        file = open(app.config['SQL_INIT'] + '.lock', 'w')
-        file.write('del it create new database!')
-        file.close()
+    # if os.path.exists(app.config['SQL_INIT'] + '.lock') is False:
+    #     file = open(app.config['SQL_INIT'] + '.lock', 'w')
+    #     file.write('del it create new database!')
+    #     file.close()
 
-        db = webCore.db_sqlite3.db_sqlite3(sql_conn_str=app.config['SQL_CONN'])
-        with open(app.config['SQL_INIT'], 'r') as f:
-            db.get_db().executescript(f.read())
-            print("db init successfully")
+    #     db = webCore.db_sqlite3.db_sqlite3(sql_conn_str=app.config['SQL_CONN'])
+    #     with open(app.config['SQL_INIT'], 'r') as f:
+    #         db.get_db().executescript(f.read())
+    #         print("db init successfully")
+    pass
 
 
 def flask_blueprints(app):

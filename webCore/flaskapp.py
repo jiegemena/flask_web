@@ -24,15 +24,14 @@ import json
 basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 
-def create_app(debug=True):
+def create_app():
     config_name = 'production'
-    if debug:
+    if os.path.exists('development.py'):
         config_name = 'development'
 
     app = Flask(__name__)
     app.config.from_object(config_name)
-    app.config['DEBUG'] = debug
-    if debug:
+    if app.config['DEBUG']:
         app.config['SECRET_KEY'] = os.urandom(24)  # 设置为24位的字符,每次运行服务器都是不同的，所以服务器启动一次上次的session就清除。
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)  # 设置session的保存时间。
 

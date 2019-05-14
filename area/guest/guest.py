@@ -32,3 +32,7 @@ def print_request_info():
 @guest_bp.route('/home/<action>', methods=['GET', 'POST'])
 def home(action):
     return webCore.Tools.apibakjson()
+
+@guest_bp.route('/', methods=['GET', 'POST'])
+def index():
+    return 'welcome web demo!'

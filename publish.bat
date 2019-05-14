@@ -2,7 +2,7 @@ rd .publish  /s/Q
 md .publish
 copy app.py .publish\app.py
 copy requirements.txt .publish\requirements.txt
-copy production.py .publish\production.py
+copy config-pro.py .publish\config.py
 copy gunicorn.conf.py .publish\gunicorn.conf.py
 copy Dockerfile .publish\Dockerfile
 

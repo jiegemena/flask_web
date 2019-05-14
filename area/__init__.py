@@ -11,6 +11,4 @@
 '''
 
 # here put the import lib
-from .admin.admin import admin_bp
-from .api.api import api_bp
 from .guest.guest import guest_bp

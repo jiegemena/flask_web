@@ -25,12 +25,9 @@ basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 
 def create_app():
-    config_name = 'production'
-    if os.path.exists('development.py'):
-        config_name = 'development'
 
     app = Flask(__name__)
-    app.config.from_object(config_name)
+    app.config.from_object('config')
     if app.config['DEBUG']:
         app.config['SECRET_KEY'] = os.urandom(24)  # 设置为24位的字符,每次运行服务器都是不同的，所以服务器启动一次上次的session就清除。
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)  # 设置session的保存时间。
@@ -74,8 +71,8 @@ def flask_init(app):
 
 
 def flask_blueprints(app):
-    app.register_blueprint(area.api_bp, url_prefix='/api')
-    app.register_blueprint(area.admin_bp, url_prefix='/admin')
+    # app.register_blueprint(area.api_bp, url_prefix='/api')
+    # app.register_blueprint(area.admin_bp, url_prefix='/admin')
     app.register_blueprint(area.guest_bp, url_prefix='/')
     # app.register_blueprint(web_bp)
 

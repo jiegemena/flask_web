@@ -1,16 +1,8 @@
-# flask_learn
+# flask_web
 flask web 框架的学习
 
 ### 开始入门 python3.7 flask
-
-#### 按照习惯，开发一个小博客
-- web : flask
-- templates : Jinja2
-- sql : sqlite3
-- ide : pycharm
-- vcs : git
-- wsgi : gunicorn
-- public : docker
+flask_web demo
 
 #### 目录
 - db : 存放数据库文件   

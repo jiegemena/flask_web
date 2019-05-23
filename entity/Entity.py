@@ -13,10 +13,12 @@
 # here put the import lib
 import webCore.db_sqlite3
 import webCore.Tools
-
+import config
 
 class Entity:
-    def __init__(self,tableName, dbconn):
+    def __init__(self,tableName, dbconn=None):
+        if dbconn is None:
+            dbconn = config.SQL_CONN
         self.db = webCore.db_sqlite3.db_sqlite3(sql_conn_str=dbconn)
         self.tableName = tableName
 
@@ -48,6 +50,8 @@ class Entity:
     def query_one(self, sql_str, sql_par=()):
         cur = self.query(sql_str=sql_str, sql_par=sql_par)
         que = cur.fetchone()
+        if que is None:
+            return None
         cols = cur.description
         row = {}
         for v2 in range(0, len(cols)):
@@ -88,5 +92,5 @@ class Entity:
         sql = 'SELECT * FROM `' + self.tableName + '` where id = ?'
         par = [id]
 
-        bak = self.db.query(sql_str=sql, sql_par=par).fetchone()
+        bak = self.query_one(sql_str=sql, sql_par=par)
         return bak

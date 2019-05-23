@@ -14,7 +14,8 @@
 import json
 import jgpycshare.LogTools
 import jgpycshare.DateTime
-from flask import session
+from flask import session, redirect
+from functools import wraps
 
 
 class Session:
@@ -29,6 +30,8 @@ class Session:
     @staticmethod
     def set_session(key, val):
         session[key] = val
+
+
 
 
 def backjson(code=0, data=None, msg='error'):
@@ -76,3 +79,14 @@ def request_post(request,key):
         print(key,'is no none',e)
         return None
 
+
+def requirLogin(func):
+    @wraps(func)
+    def do(*args, **kwargs):
+        Login = Session.get_session('Login')
+        print(Login)
+        if Login is not None and len(Login) > 0:
+            return func(*args, **kwargs)
+        else:
+            return apibakjson(code=0,data='',msg='Authentication failure') 
+    return do

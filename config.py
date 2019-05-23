@@ -1,6 +1,7 @@
 DEBUG = True
 PORT = 8080
 HOST = '127.0.0.1'
+WEBNAME='jgcloudd'
 SECRET_KEY = 'web'
 
 # 提交参数拦截

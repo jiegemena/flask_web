@@ -22,3 +22,23 @@ function GetQueryString(name) {
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]); return null;
 }
+
+function activeMenu(path) {
+    urlpath = window.location.pathname;
+    urlpath = urlpath.replace(path, '');
+    urlpaths = urlpath.split('/')
+    $("#menu-nav").find('a').each(function () {
+      thisPath = $(this).attr('href');
+      thisPath = thisPath.replace(path, '');
+      thisPaths = thisPath.split('/');
+      if (thisPaths[2] == urlpaths[2]) {
+        $(this).parent('li').addClass('active');
+      }
+    });
+  }
+
+  function loginout(){
+    delCookie('jgcloudd');
+    delCookie('username');
+    location.href = '/ui/index';
+}

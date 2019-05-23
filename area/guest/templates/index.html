@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="author" content="jiegemena">
+  <title>
+    jgcloudd
+  </title>
+
+  <!-- Bootstrap core CSS -->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Documentation extras -->
+
+  <link href="/assets/css/docs.min.css" rel="stylesheet">
+
+  <link href="/assets/css/patch.css" rel="stylesheet">
+  <!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="/assets/js/ie-emulation-modes-warning.js"></script>
+  <link href="/style.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.ico">
+  <script src="/assets/js/cookies.js"></script>
+  <script>
+      loginstr = getCookie("jgcloudd");
+      if (loginstr == null || loginstr.length == 0){
+         window.location.href = '/ui/login';
+      }
+  </script>
+</head>
+
+<body>
+  <!-- Docs master nav -->
+  <header class="navbar navbar-static-top bs-docs-nav">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar"
+          aria-controls="bs-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/ui/index" class="navbar-brand">jgcloud</a>
+      </div>
+      <nav id="bs-navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav" id="menu-nav">
+          <li class="">
+            <a href="/ui/index">home</a>
+          </li>
+          <li>
+              <a href="/ui/log">logging</a>
+            </li>
+          <li>
+            <a href="/ui/settings">settings</a>
+          </li>
+          <li>
+            <a class="reddot" href="/ui/help" target="_blank">help</a>
+          </li>
+        </ul>
+        <!-- <ul class="nav navbar-nav navbar-right">
+          <li>
+          <a href="/admin/login/out"><span>用户名</span>退出登录</a>
+            
+          </li>
+        </ul> -->
+        <ul class="nav navbar-nav navbar-right">
+            <li id="fat-menu" class="dropdown">
+              <a id="drop3" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span id="nav-righe-t">loading...</span>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="drop3">
+                <li><a href="#">self</a></li>
+                <li><a href="#">login log</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="javascript:void(0);" onclick="loginout();">login out</a></li>
+              </ul>
+            </li>
+          </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- Docs page layout -->
+  <div class="bs-docs-header" id="content" tabindex="-1">
+    <div class="container">
+      <h1>jgcloud</h1>
+      <p>all services</p>
+
+    </div>
+  </div>
+
+  <div id="context-div" class="container-fluid bs-docs-container">
+    
+  </div>
+
+  <!-- Footer
+================================================== -->
+  <footer class="bs-docs-footer">
+    <div class="container">
+      <ul class="bs-docs-footer-links">
+        <li><a href="">js : jiegemema</a></li>
+        <li><a href="">jgcloudd</a></li>
+        <li><a href="">about</a></li>
+      </ul>
+
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript
+================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.min.js"><\/script>')</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+
+  <script src="/assets/js/docs.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="/web.js"></script>
+  <script src="/assets/js/datafile.js"></script>
+  <script type="text/javascript">
+    main();
+    function main(){
+        activeMenu('/admin');
+
+        username = getCookie("username");
+        $('#nav-righe-t').text(username);
+    }
+  </script>
+
+</body>
+
+</html>

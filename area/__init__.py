@@ -11,4 +11,4 @@
 '''
 
 # here put the import lib
-from .guest.guest import guest_bp
+from .guest import guest_bp

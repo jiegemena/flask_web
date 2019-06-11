@@ -2,7 +2,7 @@ import config
 import consul
 
 def register():
-    server_name = config.CONSUL_NAME
+    server_name = config.CONSUL_CLIENT_NAME
     ip = config.CONSUL_CLIENT_HOST
     port= config.CONSUL_CLIENT_PORT
     c = consul.Consul(host=config.CONSUL_HOST,port=config.CONSUL_PORT) # 连接consul 服务器，默认是127.0.0.1，可用host参数指定host
@@ -12,7 +12,7 @@ def register():
     print(f"注册服务{server_name}成功")
 
 def unregister():
-    server_name = config.CONSUL_NAME
+    server_name = config.CONSUL_CLIENT_NAME
     ip = config.CONSUL_CLIENT_HOST
     port= config.CONSUL_CLIENT_PORT
     c = consul.Consul(host=config.CONSUL_HOST,port=config.CONSUL_PORT)

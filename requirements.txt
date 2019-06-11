@@ -1,3 +1,3 @@
 flask
-jgpycshare==1.8.2
+jgpycshare==1.8.6
 python-consul

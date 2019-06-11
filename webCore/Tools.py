@@ -13,6 +13,7 @@
 # here put the import lib
 import json
 import jgpycshare.LogTools
+import jgpycshare.JsonTools
 import jgpycshare.DateTime
 from flask import session, redirect
 from functools import wraps
@@ -46,8 +47,26 @@ class OutException(BaseException):
     def __init__(self, mesg="throw a Exception"):
         print(mesg)
 
+
+class ILogTools:
+    def __init__(self, log):
+        self.log = log
+
+    def info(self,str):
+        self.log.info(str)
+
+    def error(self,str):
+        self.log.error(str)
+
+    def fatal(self,str):
+        self.log.exception(str)
+
+    def debug(self,str):
+        self.log.debug(str)
+
 def qxlog():
-    log = jgpycshare.LogTools.LogTools.get_logger('web', 'info')
+    log = ILogTools(jgpycshare.LogTools.LogTools.get_logger('web', 'info'))
+    # log = jgpycshare.LogTools.LogTools.get_logger('web', 'info')
     return log
 
 

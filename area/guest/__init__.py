@@ -28,10 +28,8 @@ def after_request(response):
 @guest_bp.before_request
 def print_request_info():
     pass
-    # print("api_bp.before_request-请求地址：print_request_info:" + str(request.path))
-    # for key in request.form:
-    #         print("api_bp.before_request-key：{}   value：{}".format(key, request.form[key]))
-
+    # print("GET参数：" + str(request.args))
+    # print("POST参数：" + str(request.form))
 
 @guest_bp.route('/home', methods=['GET', 'POST'])
 def home():

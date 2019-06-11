@@ -13,10 +13,10 @@
 
 # here put the import lib
 from flask import Blueprint, request, current_app, render_template, redirect, make_response
-import webCore.Tools
 import uuid
 import entity.Entity
 import jgpycshare.StringTools
+import tools
 
 guest_bp = Blueprint('guest', __name__, template_folder="templates",
                    static_url_path='', static_folder='static')
@@ -34,7 +34,7 @@ def print_request_info():
 @guest_bp.route('/home', methods=['GET', 'POST'])
 def home():
     cookie = request.cookies.get(current_app.config['WEBNAME']) 
-    return webCore.Tools.apibakjson(data=cookie)
+    return tools.apibakjson(data=cookie)
 
 
 @guest_bp.route('/', methods=['GET', 'POST'])
@@ -49,8 +49,8 @@ def index():
 def api(action):
 
     if action == 'login':
-        username = webCore.Tools.request_post(request, 'username')
-        pwd = webCore.Tools.request_post(request, 'pwd')
+        username = tools.request_post(request, 'username')
+        pwd = tools.request_post(request, 'pwd')
 
         pwd = jgpycshare.StringTools.StringTools.get_login_pass(pwd)
 
@@ -63,7 +63,7 @@ def api(action):
         user = userentity.query_one(sqlstr, sqlpar)
         print(user)
         if user is None:
-            return webCore.Tools.apibakjson(code=0,data='',msg='errorlogin')
+            return tools.apibakjson(code=0,data='',msg='errorlogin')
 
         sqlstr = "UPDATE `jguser` SET `loginguid` = ? WHERE id = " + str(user['id'])
         sqlpar = []
@@ -72,11 +72,11 @@ def api(action):
 
         user = userentity.findById(user['id'])
         if user is None:
-            return webCore.Tools.apibakjson(code=0,data='',msg='errorlogin')
+            return tools.apibakjson(code=0,data='',msg='errorlogin')
         print(user)
         
         user['password'] = ''
-        return webCore.Tools.apibakjson(code=1,data=user,msg='success')
+        return tools.apibakjson(code=1,data=user,msg='success')
         # resp = make_response(redirect('/ui/index'))
         # gio = str(uuid.uuid1())
         # resp.set_cookie(current_app.config['WEBNAME'], gio)

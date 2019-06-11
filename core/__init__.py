@@ -28,11 +28,9 @@ from flask import Flask, request
 import os
 from datetime import timedelta
 from jgpycshare.LogTools import LogTools
-import webCore.db_sqlite3
-import webCore.Tools
 import area
 import json
-import webCore.consultools
+import tools
 
 basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -62,12 +60,12 @@ def create_app():
 
 
 def flask_logging(app):
-    log = webCore.Tools.qxlog()
+    log = tools.qxlog()
     app.config['log'] = log
-    # logger.info("Start print log")
-    # logger.debug("Do something")
-    # logger.warning("Something maybe fail.")
-    # logger.info("Finish")
+    log.info("info")
+    log.debug("debug")
+    log.error("error")
+    log.info("info")
 
 
 # 初始化应用
@@ -77,14 +75,14 @@ def flask_init(app):
         file.write('del it create new database!')
         file.close()
 
-        db = webCore.db_sqlite3.db_sqlite3(sql_conn_str=app.config['SQL_CONN'])
+        db = tools.db_sqlite3(sql_conn_str=app.config['SQL_CONN'])
         with open(app.config['SQL_INIT'], 'r') as f:
             db.get_db().executescript(f.read())
             print("db init successfully")
     ### register consul
-    webCore.consultools.unregister()
+    tools.unregister()
     if app.config['CONSUL_STATE']:
-        webCore.consultools.register()
+        tools.register()
 
 
 def flask_blueprints(app):
@@ -131,7 +129,7 @@ def flask_request_handlers(app, sql_intercept):
 
     @app.before_request
     def print_request_info():
-        log = webCore.Tools.ILogTools(app.config['log'])
+        log = app.config['log']
         log.info("请求地址:" + str(request.path))
         log.info("GET参数：" + str(request.args))
         log.info("POST参数：" + str(request.form))
@@ -145,8 +143,3 @@ def flask_request_handlers(app, sql_intercept):
                 if (request.form[key]).find(k) >= 0:
                     return 'have post sql_intercept par:' + k
         
-
-
-
-
-

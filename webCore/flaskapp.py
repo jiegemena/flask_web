@@ -20,6 +20,7 @@ import webCore.Tools
 import area
 import webCore.Interface.ILogTools
 import json
+import webCore.consultools
 
 basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -68,7 +69,8 @@ def flask_init(app):
         with open(app.config['SQL_INIT'], 'r') as f:
             db.get_db().executescript(f.read())
             print("db init successfully")
-    pass
+    ### register consul
+    webCore.consultools.register()
 
 
 def flask_blueprints(app):

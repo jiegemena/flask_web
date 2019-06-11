@@ -14,3 +14,12 @@ LOGPATH = 'logs'
 # sqlite 文件
 SQL_CONN = 'appdata/web.db'
 SQL_INIT = 'appdata/init.sql'
+
+
+# consul
+CONSUL_HOST='127.0.0.1'
+CONSUL_PORT=8500
+
+CONSUL_NAME = 'flask_web'
+CONSUL_CLIENT_HOST='127.0.0.1'
+CONSUL_CLIENT_PORT=8080

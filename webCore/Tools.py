@@ -16,7 +16,7 @@ import jgpycshare.LogTools
 import jgpycshare.DateTime
 from flask import session, redirect
 from functools import wraps
-
+import uuid
 
 class Session:
     @staticmethod
@@ -30,8 +30,6 @@ class Session:
     @staticmethod
     def set_session(key, val):
         session[key] = val
-
-
 
 
 def backjson(code=0, data=None, msg='error'):
@@ -52,16 +50,60 @@ def qxlog():
     log = jgpycshare.LogTools.LogTools.get_logger('web', 'info')
     return log
 
-def apibakjson(code=0, data=None, msg='error', merid=None, key=None):
+
+class CApiRequest:
+    """
+    - par:
+        - request httprequest
+            - method
+            - sign
+            - data
+            - appid
+            - timestamp int 
+            - guid
+    """
+    def __init__(self, request):
+        self.method = request_post(request, 'method')
+        if self.method is None:
+            raise Exception('method is null')
+        self.sign = request_post(request, 'sign')
+        if self.sign is None:
+            raise Exception('sign is null')
+        self.data = request_post(request, 'data')
+        if self.data is None:
+            pass
+        self.timestamp = request_post(request, 'timestamp')
+        if self.timestamp is None:
+            raise Exception('timestamp is null')
+        self.appid = request_post(request, 'appid')
+        if self.appid is None:
+            raise Exception('appid is null')
+        self.guid = request_post(request, 'guid')
+        if self.guid is None:
+            raise Exception('guid is null')
+
+
+def apibakjson(code=0, data=None, msg='error', appid=None, key=None, datatype='json'):
+    """
+
+    :param code : 10000	接口调用成功，调用结果请参考具体的API文档所对应的业务返回参数
+    :param data:
+    :param msg:
+    :param appid:
+    :param key:
+    :param datatype:
+    :return:
+    """
     bakJson = {}
     bakJson['code'] = code
     bakJson['msg'] = msg
-    bakJson['merid'] = merid
-    bakJson['datatype'] = 'rsa2'
-    bakJson['timestamp'] = jgpycshare.DateTime.DateTime().Now().ToString()
+    bakJson['appid'] = appid
+    bakJson['datatype'] = datatype
+    bakJson['timestamp'] = str(jgpycshare.DateTime.DateTime().Now().thisDate)
     bakJson['data'] = data
-    bakJson['ranstr'] = 'ranstr'
-    return json.dumps(bakJson)
+    bakJson['sign'] = 'sign'
+    bakJson['ranstr'] = str(uuid.uuid1())
+    return jgpycshare.JsonTools.arraytojson(bakJson)
 
 
 

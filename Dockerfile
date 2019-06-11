@@ -5,4 +5,4 @@ COPY . .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 EXPOSE 80
-CMD ["gunicorn", "app:app", "-c", "./gunicorn.conf.py"]
+CMD ["gunicorn", "app:app", "-c", "./gunicorn_conf.py"]
